@@ -12,7 +12,7 @@ except IOError:
 # line, it's possible required libraries won't be in your searchable path
 #
 
-from myFlaskApp import app as application
+from server import app as application
 
 #
 # Below for testing only
