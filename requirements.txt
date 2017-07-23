@@ -1,2 +1,2 @@
-MySQLdb
+mysql-connector-python-rf-2.2.2
 Flask==0.10.1
