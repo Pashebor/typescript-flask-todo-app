@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://adminehnDfyk:tX911lSkRCAU@127.13.8.2:3306/myflaskapp2'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://adminehnDfyk:tX911lSkRCAU@127.13.8.2/myflaskapp2'
 db = SQLAlchemy(app)
 
 
