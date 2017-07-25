@@ -1,5 +1,3 @@
-import os
-
 from flask import Flask, render_template, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 # ad
@@ -30,8 +28,7 @@ def catch_all_uri(uri):
 
 # @app.route('/<path:filename>')
 # def serve_static(filename):
-#     root_dir = os.path.dirname(os.getcwd())
-#     return send_from_directory(os.path.join(root_dir, 'static'), filename, as_attachment=True)
+#     return send_from_directory('static', filename, as_attachment=True)
 
 
 @app.route('/')
