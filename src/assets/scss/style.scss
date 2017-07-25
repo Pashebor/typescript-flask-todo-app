@@ -1,0 +1,107 @@
+@import "../../../node_modules/normalize.css/normalize.css";
+@import "fonts";
+@import "variables";
+@import "../../components/header/header";
+@import "../../components/footer/footer";
+@import "../../components/main/login/login";
+@import "../../components/main/registration/registration";
+@import "../../components/main/authorization-form/form";
+@import "../../components/main/start-screen/start-screen";
+
+body{
+  background-color: $body-color;
+}
+
+.todo-app{
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  width: 1170px;
+  margin: auto;
+}
+
+.submit-btn{
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px 25px;
+  margin: auto;
+  background-color: $green-color;
+  font-family: $content-font;
+  font-weight: 600;
+  color: white;
+  border: 1px solid #388E3C;
+  outline: none;
+  border-radius: 5px;
+  box-shadow: 0 5px 5px -5px gray;
+  transition: all 0.3s ease-in;
+  &:hover{
+    background-color: #4CAF50;
+    box-shadow: 0 5px 5px -2px gray;
+  }
+}
+
+.link{
+  font-family: $content-font;
+  font-size: 16px;
+  text-decoration: none;
+  color: darkgrey;
+  font-weight: 600;
+  display: block;
+  transition: color 0.2s ease-in;
+  width: 100px;
+  padding: 0 20px;
+  &:hover{
+    color: $red-color;
+  }
+  &--register{
+    &::after{
+      position: relative;
+      font-family: FontAwesome;
+      content: '\f105';
+      color: darkgray;
+      font-size: 18px;
+      left: 10px;
+      transition: all 0.2s ease-in;
+    }
+
+    &:hover{
+      &::after{
+        color: $red-color;
+        left: 15px;
+      }
+    }
+  }
+
+  &--back {
+    &::before {
+      position: relative;
+      font-family: FontAwesome;
+      content: '\f104';
+      color: darkgray;
+      font-size: 18px;
+      right: 10px;
+      transition: all 0.2s ease-in;
+    }
+    &:hover{
+      &::before{
+        color: $red-color;
+        right: 15px;
+      }
+    }
+  }
+}
+
+.navigation-block{
+  display: flex;
+  flex-flow: row;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.wrapper{
+  background-color: rgba(246, 246, 246, 0.95);
+  padding: 50px 0 160px 0;
+}
+

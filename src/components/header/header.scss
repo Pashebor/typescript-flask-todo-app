@@ -1,0 +1,48 @@
+.header{
+  display: flex;
+  background-color: white;
+  position: relative;
+  padding: 15px 0;
+  font-family: $primary-font;
+  text-align: right;
+  overflow: hidden;
+  @include default-shadow-bottom;
+  &__title{
+    display: block;
+    font-size: 25px;
+    font-weight: 100;
+    width: 100%;
+    text-align: center;
+    @include fade-in;
+    &::before{
+      font-family: FontAwesome;
+      content: '\f044';
+      margin-right: 5px;
+      position: relative;
+      top: 1px;
+    }
+  }
+}
+
+.user-block{
+  display: block;
+  font-size: 22px;
+  font-weight: 100;
+  position: absolute;
+  top: 18px;
+  right: 50px;
+  &__register{
+    color: black;
+    text-decoration: none;
+    @include slide-right;
+    &::before{
+      font-family: FontAwesome;
+      content: '\f2c0';
+      top: 1px;
+      transition: color 0.2s ease-in;
+    }
+    &:hover{
+      color: $red-color;
+    }
+  }
+}

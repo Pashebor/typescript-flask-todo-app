@@ -1,0 +1,67 @@
+.start-screen{
+  text-align: center;
+  margin-top: 50px;
+  background-image: url(../images/clipboard.png);
+  background-repeat: no-repeat;
+  background-size: 20% ;
+  background-position: center;
+  @include fade-in;
+  &__content{}
+
+  &__title{
+    @extend .login__title;
+  }
+  &__subtitle{
+    font-size: 25px;
+    font-family: $content-font;
+    color: black;
+    font-weight: 600;
+    line-height: 27px;
+    margin-bottom: 10px;
+  }
+  &__variants{
+    font-size: 25px;
+    font-family: $content-font;
+    color: black;
+    font-weight: 600;
+    line-height: 27px;
+    margin-bottom: 10px;
+    margin-top: 40px;
+    span:first-child{
+      position: relative;
+      color: $red-color;
+      &::after{
+        transform: rotate(35deg);
+        left: 30%;
+      }
+    }
+    span:last-child{
+      position: relative;
+      color: $green-color;
+      &::after{
+        transform: rotate(-35deg);
+        right: 30%;
+      }
+    }
+    @each $child in (first-child, last-child) {
+      span:#{$child} {
+        &::after{
+          position: absolute;
+          display: inline-block;
+          font-family: FontAwesome;
+          content: '\f175';
+          top: 45px;
+          font-size: 30px;
+          font-weight: 100;
+        }
+      }
+    }
+  }
+  .navigation-block{
+    margin-top: 50px;
+    .link--back, .link--register{
+      font-size: 20px;
+      width: 140px;
+    }
+  }
+}

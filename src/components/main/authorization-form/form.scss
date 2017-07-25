@@ -1,0 +1,48 @@
+.form{
+  width: 35%;
+  margin: 20px auto 20px auto;
+  padding: 0 5%;
+  &__item{
+    text-shadow: 0 0px 1px gray;
+    label{
+      text-align: left;
+      font-family: $content-font;
+      font-size: 18px;
+      font-weight: 600;
+      margin: 5px 0;
+      span{
+        color: $red-color;
+        font-size: 20px;
+      }
+    }
+    input[type=submit] {
+      margin-top: 20px;
+    }
+    display: flex;
+    flex-flow: column;
+    margin: 5px;
+  }
+  &__input{
+    height: 30px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid $inputs-border;
+    padding: 0 10px;
+    font-family: $content-font;
+    color: darkgray;
+  }
+  &__file {
+    display: none;
+  }
+
+  &__image{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    border: 2px solid $inputs-border;
+  }
+
+}
