@@ -1,6 +1,6 @@
 from flask import Flask, render_template, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
-
+# ad
 app = Flask(__name__, static_folder='dist')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://adminehnDfyk:tX911lSkRCAU@127.13.8.2:3306/myflaskapp2'
 db = SQLAlchemy(app)
