@@ -10,6 +10,7 @@ db = SQLAlchemy(app)
 # log: adminehnDfyk
 # pass: tX911lSkRCAU
 # db: myflaskapp2
+
 class Users(db.Model):
     __tablename__ = 'users'
     id = db.Column('id', db.Integer, primary_key=True)
