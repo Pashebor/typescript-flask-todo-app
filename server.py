@@ -1,8 +1,9 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, jsonify, json
 from flask_sqlalchemy import SQLAlchemy
+from classes.serializer import AlchemyEncoder
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd90@localhost/db_todo'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd@localhost/test'
 db = SQLAlchemy(app)
 
 
@@ -14,10 +15,30 @@ db = SQLAlchemy(app)
 
 
 
+
+class Users(db.Model):
+    __tablename__ = 'users'
+
+    id = db.Column('id', db.Integer, primary_key=True)
+    first_name = db.Column('first_name', db.VARCHAR(30))
+    last_name = db.Column('last_name', db.VARCHAR(30))
+
+    def __init__(self, first_name, last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+
+
+def addUser(user):
+    db.session.add(user)
+    db.session.commit()
+
+
 @app.route('/', defaults={'uri': ''})
 @app.route('/<path:uri>')
 def catch_all_uri(uri):
     if uri == 'register':
+        users = Users.query.all()
+        print (json.dumps({'users': users}, cls=AlchemyEncoder))
         return render_template('todo.html')
     elif uri == 'login':
         return render_template('todo.html')
