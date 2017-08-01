@@ -8,7 +8,6 @@ export const registerReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case REGISTER_USER:
             return {...state, regData: action.payload};
-            console.log(state);
     }
     return state;
 };

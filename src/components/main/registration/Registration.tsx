@@ -1,11 +1,18 @@
 import * as React from 'react';
-import {RegisterProps} from "../Main";
 import {Link} from 'react-router-dom';
 import  AuthorizationForms from '../authorization-form/AuthorizationForms';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 
 
-class Registration extends React.Component<RegisterProps> {
+class Registration extends React.Component<any> {
+    componentDidMount() {
+        if (this.props.regData.name) {
+            const {history} = this.props;
+            history.push('/');
+        }
+    }
     render() {
         return(
             <main className="registration">
@@ -24,4 +31,16 @@ class Registration extends React.Component<RegisterProps> {
     }
 }
 
-export default Registration;
+export function mapStateToProps(store: any) {
+    return {
+        regData: store.regFormStore.regData
+    }
+}
+
+export const mapDispatchToProps = (dispatch:any) => {
+    //noinspection TypeScriptValidateTypes
+    return bindActionCreators({}, dispatch)
+};
+
+//noinspection TypeScriptValidateTypes
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);

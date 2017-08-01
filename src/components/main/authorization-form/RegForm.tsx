@@ -45,16 +45,14 @@ class RegForm extends React.Component<any>{
             console.log('not equal');
         } else {
             formData.append('image', image.files[0]);
-            /*formData.append('pass', password);
-            formData.append('name', name);*/
+            formData.append('pass', password);
+            formData.append('name', name);
             sendRegisteredUser(formData);
-            console.log(formData)
         }
 
     }
 
     render() {
-        console.log(this);
         return(
             <form className="form" encType="multipart/form-data" ref="regForm" onSubmit={this.onSumitHandler.bind(this)}>
                 <div className="form__item">

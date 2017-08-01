@@ -8,11 +8,11 @@ from werkzeug.utils import secure_filename
 from classes.serializer import AlchemyEncoder
 
 UPLOAD_FOLDER = 'static/uploads/'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd@localhost/test'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 db = SQLAlchemy(app)
 
 
@@ -35,9 +35,10 @@ class Users(db.Model):
     password = db.Column('password', db.VARCHAR(120))
     img = db.Column('img', db.VARCHAR(120))
 
-    def __init__(self, first_name, last_name):
-        self.first_name = first_name
-        self.last_name = last_name
+    def __init__(self, name, password, image):
+        self.name = name
+        self.password = password
+        self.img = image
 
 
 def addUser(user):
@@ -64,15 +65,14 @@ def start():
 @app.route('/register-user', methods=['POST'])
 def register_user():
     file = request.files['image']
-    if file:
-        # Make the filename safe, remove unsupported chars
-        filename = secure_filename(file.filename)
-        # Move the file form the temporal folder to
-        # the upload folder we setup
+    name = request.form.get('name')
+    password = request.form.get('pass')
+    filename = secure_filename(file.filename)
+    if file and allowed_file(filename):
+        user = Users(name, password, filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        # Redirect the user to the uploaded_file route, which
-        # will basicaly show on the browser the uploaded file
-        return request.data
+        addUser(user)
+        return json.dumps({'name': name, 'password': password, 'image': 'static/uploads/' + filename})
 
 
 @app.route('/login-user', methods=['POST'])

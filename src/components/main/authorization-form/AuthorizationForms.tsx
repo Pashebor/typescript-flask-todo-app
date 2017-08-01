@@ -11,7 +11,7 @@ class AuthorizationForms extends React.Component<UrlParameter>{
 
 
     private showUrlParam():string {
-        let {param} = this.props;
+        const {param} = this.props;
         this.urlParam = param;
         return this.urlParam;
     }

@@ -1,8 +1,5 @@
 export const ajaxJson = (url:string, method: string = 'get', params: object) => {
-    return fetch(url, {
-        method,
-        body: params
-    })
+    return fetch(url, {method, body: params})
         .then(response => response.json());
 };
 
