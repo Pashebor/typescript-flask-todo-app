@@ -1,13 +1,13 @@
 import {LOGIN_USER} from '../actions/constants';
 
 interface Form{
-    formData: any
+    formData: object
 }
-const initialState = {
+const initialState: Form = {
     formData: {}
 };
 
-export const loginReducer = (state = initialState, action: any) => {
+export const loginReducer = (state: Form = initialState, action: any) => {
     switch (action.type) {
         case LOGIN_USER:
             return {...state, formData: action.payload};

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {regUser} from  '../../../actions/actions';
+import {sendRegisteredUser} from  '../../../actions/actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -14,7 +14,6 @@ class RegForm extends React.Component<any>{
         passwordConfirm: HTMLInputElement;
     };
 
-    public formData: FormData;
 
     private imagePreview(e: any) {
         if (e.target.files && e.target.files[0]) {
@@ -34,6 +33,8 @@ class RegForm extends React.Component<any>{
 
     private onSumitHandler(e: any) {
         e.preventDefault();
+        const {sendRegisteredUser} = this.props;
+
         let formData = new FormData();
         let password: string = this.refs['password'].value,
             passwordConfirm: string = this.refs['passwordConfirm'].value,
@@ -44,9 +45,10 @@ class RegForm extends React.Component<any>{
             console.log('not equal');
         } else {
             formData.append('image', image.files[0]);
-            formData.append('password', password);
-            formData.append('name', name);
-            console.log(formData.getAll)
+            /*formData.append('pass', password);
+            formData.append('name', name);*/
+            sendRegisteredUser(formData);
+            console.log(formData)
         }
 
     }
@@ -56,7 +58,7 @@ class RegForm extends React.Component<any>{
         return(
             <form className="form" encType="multipart/form-data" ref="regForm" onSubmit={this.onSumitHandler.bind(this)}>
                 <div className="form__item">
-                    <img src="images/question.png" ref="image" className="form__image" alt="Фото" title="Фото" onClick={this.uploadImageHandler.bind(this)}/>
+                    <img src="static/images/question.png" ref="image" className="form__image" alt="Фото" title="Фото" onClick={this.uploadImageHandler.bind(this)}/>
                     <input className="form__file" ref="fileInput" id="photo" type="file" name="photo" onChange={this.imagePreview.bind(this)} />
                 </div>
                 <div className="form__item">
@@ -87,7 +89,7 @@ export function mapStateToProps(store:any) {
 
 export const mapDispatchToProps = (dispatch:any) => {
     //noinspection TypeScriptValidateTypes
-    return bindActionCreators({regUser}, dispatch)
+    return bindActionCreators({sendRegisteredUser}, dispatch)
 };
 
 //noinspection TypeScriptValidateTypes

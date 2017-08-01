@@ -7,7 +7,7 @@ import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const rootPath = path.resolve(__dirname, "src");
 const root = path.resolve(__dirname, 'src');
-const outputPath = path.resolve(__dirname, 'templates/dist');
+const outputPath = path.resolve(__dirname, 'static/');
 
 const configProd: webpack.Configuration = {
     context: path.join(__dirname, "src"),
@@ -50,9 +50,9 @@ const configProd: webpack.Configuration = {
     },
     watch: false,
     plugins: [
-        new HtmlWebpackPlugin({
+        /*new HtmlWebpackPlugin({
             template: path.resolve(rootPath, './index.html')
-        }),
+        }),*/
         new ExtractTextPlugin({ filename: './[name].css', disable: false, allChunks: true }),
         new CopyWebpackPlugin([
             { from: 'assets/images', to: 'images/' },

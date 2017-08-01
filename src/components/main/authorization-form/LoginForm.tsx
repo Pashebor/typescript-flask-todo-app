@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {loginUser} from '../../../actions/actions';
+import {sendUserCallback} from '../../../actions/actions';
 
 class LoginForm extends React.Component<any>{
     refs: any = {
@@ -12,11 +12,12 @@ class LoginForm extends React.Component<any>{
     private onSubmitLoginHandler(event: any): void {
         event.preventDefault();
         let formData: any = {};
-        const {loginUser} = this.props;
+        const {sendUserCallback} = this.props;
         for (let field in this.refs) {
             formData[field] = this.refs[field].value;
         }
-        loginUser(formData);
+        console.log(formData);
+        sendUserCallback(formData);
     }
 
     render() {
@@ -46,7 +47,7 @@ export function mapStateToProps(store:any) {
 
 export const mapDispatchToProps = (dispatch:any) => {
     //noinspection TypeScriptValidateTypes
-    return bindActionCreators({loginUser}, dispatch)
+    return bindActionCreators({sendUserCallback}, dispatch)
 };
 
 //noinspection TypeScriptValidateTypes
