@@ -8,11 +8,11 @@ export const getJson = (url: string, params: Object): object => {
 
 };
 
-export const requestCallback = (url: string, params: object) => {
+export const requestCallback = (url: string, params: Object) => {
     return ajaxJson(url, 'POST', params);
 };
 
-export const putJson = (url: string, params: object): object => {
+export const putJson = (url: string, params: Object): object => {
     return ajaxJson(url, 'put', params);
 };
 

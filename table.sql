@@ -1,4 +1,4 @@
-use test;
+use todoapp;
 INSERT INTO users(first_name, last_name) VALUES ('Andew', 'Romanov');
 SELECT * from users;
 DROP TABLE users;

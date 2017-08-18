@@ -1,0 +1,98 @@
+.todo-screen{
+  width: 80%;
+  margin: auto;
+  .todo-list{
+    width: 70%;
+    margin: auto;
+    counter-reset: list;
+    &__title{
+      @extend .login__title;
+    }
+    &__item{
+      position: relative;
+      .edit-button, .delete-button {
+        position: absolute;
+        top: 10px;
+        cursor: pointer;
+        &:focus{
+          outline: none;
+          border: none;
+        }
+      }
+      .edit-button{
+        right: 40px;
+        transition: all .3s ease-in-out;
+        &:hover{
+          transform: rotate(-45deg);
+        }
+      }
+      .delete-button{
+        transition: all .3s ease-in-out;
+        right: 10px;
+        &:hover{
+          &::before{
+            color: black;
+          }
+        }
+      }
+      &:not(:first-of-type){
+        .todo-list__note{
+          border-bottom: 1px solid $inputs-border;
+          border-left: 1px solid $inputs-border;
+          border-right: 1px solid $inputs-border;
+        }
+      }
+      &:first-of-type{
+        .todo-list__note{
+          border: 1px solid $inputs-border;
+        }
+      }
+    }
+    &__note{
+      padding: 0 10px 0 0;
+      font-family: $todo-list-font;
+      font-size: 20px;
+      text-align: left;
+      line-height: normal;
+      margin: 0;
+      &::before{
+        background-color: $inputs-border;
+        font-size: 25px;
+        display: inline-block;
+        width: 30px;
+        margin-right: 5px;
+        text-align: center;
+        text-transform: capitalize;
+        counter-increment: list;
+        content: counter(list)". ";
+      }
+    }
+  }
+  .search-block{
+    position: relative;
+    height: 35px;
+    &::after{
+      position: absolute;
+      right: 35%;
+      font-family: FontAwesome;
+      content: '\f002';
+      color: black;
+      font-size: 22px;
+      line-height: 30px;
+      height: 30px;
+      width: 32px;
+      display: inline-block;
+      background-color: white;
+      border-right: 1px solid $inputs-border;
+      border-top: 1px solid $inputs-border;
+      border-bottom: 1px solid $inputs-border;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      padding-right: 5px;
+    }
+    .form__input{
+      width: 250px;
+      border-right: none;
+    }
+  }
+}

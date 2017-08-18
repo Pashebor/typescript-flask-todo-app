@@ -15,7 +15,7 @@
     "node_modules"
   ],
   "files":[
-    "config/webpack.config.ts",
+    "./webpack.config.ts",
     "./webpack.prod.config.ts"
   ]
 }

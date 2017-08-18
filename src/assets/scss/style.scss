@@ -7,6 +7,7 @@
 @import "../../components/main/registration/registration";
 @import "../../components/main/authorization-form/form";
 @import "../../components/main/start-screen/start-screen";
+@import "../../components/main/todos/todos";
 
 body{
   background-color: $body-color;
@@ -98,6 +99,37 @@ body{
   flex-flow: row;
   margin-top: 40px;
   justify-content: center;
+}
+
+
+
+.edit-button, .delete-button{
+  width: 30px;
+  background: none;
+  border: none;
+  text-align: center;
+  &::before{
+    font-family: FontAwesome;
+    font-size: 22px;
+  }
+}
+
+@each $button in (edit, delete) {
+  @if($button == edit) {
+    .#{$button}-button {
+      &::before{
+        content: '\f040';
+        color: black;
+      }
+    }
+  } @else if($button == delete) {
+    .#{$button}-button {
+      &::before{
+        content: '\f00d';
+        color: #ef5350;
+      }
+  }
+  }
 }
 
 .wrapper{
