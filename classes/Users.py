@@ -12,8 +12,3 @@ class Users(db.Model):
         self.first_name = first_name
         self.last_name = last_name
 
-
-def addUser(user):
-    db.session.add(user)
-    db.session.commit()
-

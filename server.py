@@ -1,7 +1,7 @@
 import os
 from collections import namedtuple
 
-from flask import Flask, render_template, jsonify, json, request
+from flask import Flask, render_template, json, request
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 
@@ -10,7 +10,7 @@ from classes.serializer import AlchemyEncoder
 UPLOAD_FOLDER = 'static/uploads/'
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd@localhost/test'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd@localhost/db_todo'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 db = SQLAlchemy(app)
