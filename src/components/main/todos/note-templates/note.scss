@@ -1,0 +1,6 @@
+.note{
+  @extend .todo-screen;
+  &__title{
+    @extend .todo-list__title;
+  }
+}

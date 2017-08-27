@@ -2,9 +2,11 @@
   width: 80%;
   margin: auto;
   .todo-list{
+    position: relative;
     width: 70%;
     margin: auto;
     counter-reset: list;
+
     &__title{
       @extend .login__title;
     }
@@ -96,3 +98,5 @@
     }
   }
 }
+
+@import "note-templates/note";

@@ -30,6 +30,10 @@
     padding: 0 10px;
     font-family: $content-font;
     color: darkgray;
+    &--message{
+      height: 130px;
+      padding: 10px 10px;
+    }
   }
   &__file {
     display: none;
