@@ -1,5 +1,6 @@
 import * as React from 'react';
 import CreateNote from './note-templates/CreateNote';
+import EditNote from './note-templates/EditNote';
 
 class SingleNote extends React.Component<any>{
     props: {
@@ -12,11 +13,10 @@ class SingleNote extends React.Component<any>{
     };
 
     createOrEdit() {
-        console.log(this.props);
       if (this.props.match.params.note === 'create-note') {
           return (<CreateNote/>);
       } else {
-          return(<h2>Edit</h2>);
+          return(<EditNote id={this.props.match.params.id}/>);
       }
     }
 

@@ -7,10 +7,11 @@ class CreateNote extends React.Component<any> {
     };
 
     onClearFieldsHandler() {
-        this.refs.message.value = '';
-        this.refs.title.value = '';
+        for (let field in this.refs) {
+            this.refs[field].value = ''
+        }
     }
-    
+
     render() {
         return(
             <section className="note">

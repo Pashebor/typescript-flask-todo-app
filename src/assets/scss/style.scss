@@ -8,6 +8,7 @@
 @import "../../components/main/authorization-form/form";
 @import "../../components/main/start-screen/start-screen";
 @import "../../components/main/todos/todos";
+@import "../../components/main/popup/popup";
 
 body{
   background-color: $body-color;
@@ -132,6 +133,7 @@ body{
   background: none;
   border: none;
   text-align: center;
+  text-decoration: none;
   &::before{
     font-family: FontAwesome;
     font-size: 22px;

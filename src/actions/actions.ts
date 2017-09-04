@@ -1,6 +1,6 @@
 import {requestCallback} from '../ustils/ajax';
 
-import {LOGIN_USER, REGISTER_USER} from "./constants";
+import {LOGIN_USER, REGISTER_USER, POPUP_STATE} from "./constants";
 import {error} from "util";
 
 export const regUser = (formData: object) => {
@@ -9,6 +9,13 @@ export const regUser = (formData: object) => {
         payload: formData
     };
 };
+
+export const switchPopup = (value: boolean) => {
+    return{
+        type: POPUP_STATE,
+        payload: value
+    }
+}
 
 /*Async actions*/
 export const loginUser = (formData: object): object => {
@@ -25,7 +32,7 @@ export const registerUser = (regData: object): object => {
     }
 };
 
-export const sendUserCallback = (formData: object) => {
+export const sendLoginedUserCallback = (formData: object) => {
     return (dispatch: any) => {
         return requestCallback('/login-user', formData)
             .then((json: object): void => {

@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {sendUserCallback} from '../../../actions/actions';
+import {sendLoginedUserCallback, switchPopup} from '../../../actions/actions';
+import Popup from '../popup/Popup';
 
 class LoginForm extends React.Component<any>{
+
     refs: any = {
         login: HTMLInputElement,
         password: HTMLInputElement
@@ -11,18 +13,29 @@ class LoginForm extends React.Component<any>{
 
     private onSubmitLoginHandler(event: any): void {
         event.preventDefault();
-        let formData: any = {};
-        const {sendUserCallback} = this.props;
-        for (let field in this.refs) {
-            formData[field] = this.refs[field].value;
+        const formData = new FormData();
+        const {sendLoginedUserCallback} = this.props;
+        const {switchPopup} = this.props;
+
+        formData.append('name', this.refs['name'].value);
+        formData.append('password', this.refs['password'].value);
+
+        switchPopup(true);
+        /*sendLoginedUserCallback(formData);*/
+    }
+
+    showPopup() {
+        if (this.props.popupIsOpen) {
+            return (<Popup/>);
+        } else{
+            console.log('not')
         }
-        console.log(formData);
-        sendUserCallback(formData);
     }
 
     render() {
         return(
             <form className="form" encType="multipart/form-data" onSubmit={this.onSubmitLoginHandler.bind(this)}>
+                {this.showPopup()}
                 <div className="form__item">
                     <label >Ваше имя <span>*</span></label>
                     <input className="form__input" id="name" ref="name" type="text" name="name" required/>
@@ -41,13 +54,14 @@ class LoginForm extends React.Component<any>{
 
 export function mapStateToProps(store:any) {
     return {
-        fromData: store.loginReducer.formData
+        fromData: store.loginReducer.formData,
+        popupIsOpen: store.popupReducer.isOpen
     }
 }
 
 export const mapDispatchToProps = (dispatch:any) => {
     //noinspection TypeScriptValidateTypes
-    return bindActionCreators({sendUserCallback}, dispatch)
+    return bindActionCreators({sendLoginedUserCallback, switchPopup}, dispatch)
 };
 
 //noinspection TypeScriptValidateTypes

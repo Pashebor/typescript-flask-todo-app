@@ -1,10 +1,15 @@
 import * as React from 'react';
-import {StartScreenProps} from "../Main";
 import UserTodoList from '../todos/UserTodoList';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-class DefaultScreen extends React.Component<StartScreenProps>{
+class DefaultScreen extends React.Component<any>{
+    popupShow() {
+        console.log(this);
+    }
     render() {
+        this.popupShow();
         return(
             <main className="start-screen">
                <div className="wrapper">
@@ -23,5 +28,17 @@ class DefaultScreen extends React.Component<StartScreenProps>{
         )
     }
 }
+export function mapStateToProps(store:any) {
+    return {
+        loginData: store.loginReducer.formData,
+        registerData: store.regFormStore.regData
+    }
+}
 
-export default DefaultScreen;
+export const mapDispatchToProps = (dispatch:any) => {
+    //noinspection TypeScriptValidateTypes
+    return bindActionCreators({}, dispatch)
+};
+
+//noinspection TypeScriptValidateTypes
+export default connect(mapStateToProps, mapDispatchToProps)(DefaultScreen);

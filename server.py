@@ -1,6 +1,5 @@
+# coding=utf-8
 import os
-from collections import namedtuple
-
 from flask import Flask, render_template, jsonify, json, request
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
@@ -79,14 +78,14 @@ def register_user():
 @app.route('/login-user', methods=['POST'])
 def login_user():
     users = Users.query.all()
-    data = json.loads(request.data, object_hook=lambda d: namedtuple('X', d.keys())(*d.values()))
+    name = request.form.get('name')
+    password = request.form.get('password')
     for user in users:
-        if user.first_name == data.name and user.last_name == data.password:
-            print (data.name, data.password)
+        if user.name == name and user.password == password:
+            print ('good')
+            return json.dumps({'name': name, 'password': password, 'image': user.img})
         else:
-            print 'null'
-
-    return request.data
+            return json.dumps({'response': 'Такого пользователя не существует'})
 
 
 if __name__ == '__main__':
