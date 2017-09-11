@@ -5,24 +5,39 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 class DefaultScreen extends React.Component<any>{
-    popupShow() {
-        console.log(this);
+
+    isEmpty(obj): boolean {
+        if (obj == null) return true;
+
+    if (obj.length > 0)    return false;
+    if (obj.length === 0)  return true;
+
+    if (typeof obj !== "object") return true;
+
+    return true;
     }
-    render() {
-        this.popupShow();
-        return(
-            <main className="start-screen">
-               <div className="wrapper">
-                   <div className="container">
-                       <UserTodoList/>
-                          {/*<h2 className="start-screen__title">Добро пожаловать в заметки онлайн!</h2>
+
+    isAuth(): any {
+        const {loginData} = this.props;
+        const {registerData} = this.props;
+
+        if (!this.isEmpty(loginData) || !this.isEmpty(registerData)) {
+            return (<div className="container"><UserTodoList/></div>);
+        } else {
+            return ( <div className="container"><h2 className="start-screen__title">Добро пожаловать в заметки онлайн!</h2>
                           <h5 className="start-screen__subtitle">Вы не зарегистрировались, либо не авторизовались <br/>для продолжения нажмите</h5>
                           <p className="start-screen__variants"><span>СЮДА</span> или <span>СЮДА</span></p>
                           <nav className="navigation-block">
                               <Link to={'/login'} className="link link--back">Авторизация</Link>
                               <Link to={'/register'} className="link link--register">Регистрация</Link>
-                          </nav>*/}
-                   </div>
+                          </nav></div>)
+        }
+    }
+    render() {
+        return(
+            <main className="start-screen">
+               <div className="wrapper">
+                   {this.isAuth()}
                </div>
             </main>
         )

@@ -9,7 +9,7 @@ from classes.serializer import AlchemyEncoder
 UPLOAD_FOLDER = 'static/uploads/'
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd@localhost/test'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd90@localhost/db_todo'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg', 'gif'])
 db = SQLAlchemy(app)
@@ -82,7 +82,6 @@ def login_user():
     password = request.form.get('password')
     for user in users:
         if user.name == name and user.password == password:
-            print ('good')
             return json.dumps({'name': name, 'password': password, 'image': user.img})
         else:
             return json.dumps({'response': 'Такого пользователя не существует'})

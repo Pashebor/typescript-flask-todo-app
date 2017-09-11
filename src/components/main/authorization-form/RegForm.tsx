@@ -2,7 +2,7 @@ import * as React from 'react';
 import {sendRegisteredUser} from  '../../../actions/actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import Popup from '../popup/Popup';
 
 class RegForm extends React.Component<any>{
     public refs: {
@@ -55,6 +55,7 @@ class RegForm extends React.Component<any>{
     render() {
         return(
             <form className="form" encType="multipart/form-data" ref="regForm" onSubmit={this.onSumitHandler.bind(this)}>
+                <Popup/>
                 <div className="form__item">
                     <img src="static/images/question.png" ref="image" className="form__image" alt="Фото" title="Фото" onClick={this.uploadImageHandler.bind(this)}/>
                     <input className="form__file" ref="fileInput" id="photo" type="file" name="photo" onChange={this.imagePreview.bind(this)} />

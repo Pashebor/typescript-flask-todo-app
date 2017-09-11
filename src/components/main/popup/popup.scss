@@ -3,13 +3,53 @@
   width: 320px;
   height: 200px;
   margin: auto;
+  border-radius: 10px;
   top: calc(50% - 100px);
+  background: white;
+  animation: fade-in-anim 0.3s 1 linear;
+  &__title{
+    font-family: $primary-font;
+    font-size: 25px;
+    text-align: center;
+    background-color: $green-color;
+    padding: 10px;
+    color: white;
+  }
+
+  &__text{
+    font-family: $content-font;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  &__close{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    cursor: pointer;
+    font-size: 40px;
+    font-family: $content-font;
+    font-weight: 600;
+    color: $red-color;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+      color: $red-color--hover;
+    }
+  }
   &-overlay{
     position: fixed;
     width: 100%;
     top: 0;
     right: 0;
     bottom: 0;
+    z-index: 1;
     background-color: rgba(0, 0, 0, 0.5);
   }
+
+  .submit-btn{
+    text-decoration: none;
+    font-size: 17px;
+
+  }
+
 }

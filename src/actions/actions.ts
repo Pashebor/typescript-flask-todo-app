@@ -10,10 +10,11 @@ export const regUser = (formData: object) => {
     };
 };
 
-export const switchPopup = (value: boolean) => {
+export const switchPopup = (value: boolean, text: string) => {
     return{
         type: POPUP_STATE,
-        payload: value
+        payload: value,
+        text: text
     }
 }
 
@@ -36,6 +37,7 @@ export const sendLoginedUserCallback = (formData: object) => {
     return (dispatch: any) => {
         return requestCallback('/login-user', formData)
             .then((json: object): void => {
+                dispatch(switchPopup(true, 'Вы успешно авторизовались!'));
                 dispatch(loginUser(json));
             })
             .catch((err: any) => console.log(error))
@@ -47,6 +49,7 @@ export const sendRegisteredUser = (formData: object) => {
     return (dispatch: any) => {
         return requestCallback('/register-user', formData)
             .then((json: object): void => {
+                dispatch(switchPopup(true, 'Вы успешно зарегистрировались!'));
                 dispatch(registerUser(json))
             })
             .catch((err: any) => console.log(error))

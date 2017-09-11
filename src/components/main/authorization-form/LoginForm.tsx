@@ -15,27 +15,26 @@ class LoginForm extends React.Component<any>{
         event.preventDefault();
         const formData = new FormData();
         const {sendLoginedUserCallback} = this.props;
-        const {switchPopup} = this.props;
 
         formData.append('name', this.refs['name'].value);
         formData.append('password', this.refs['password'].value);
 
-        switchPopup(true);
-        /*sendLoginedUserCallback(formData);*/
+        sendLoginedUserCallback(formData);
     }
 
-    showPopup() {
-        if (this.props.popupIsOpen) {
+    openPopup(): any {
+        let {popupIsOpen} = this.props;
+        if (popupIsOpen) {
             return (<Popup/>);
-        } else{
-            console.log('not')
+        } else {
+            return false;
         }
     }
 
     render() {
         return(
             <form className="form" encType="multipart/form-data" onSubmit={this.onSubmitLoginHandler.bind(this)}>
-                {this.showPopup()}
+                {this.openPopup()}
                 <div className="form__item">
                     <label >Ваше имя <span>*</span></label>
                     <input className="form__input" id="name" ref="name" type="text" name="name" required/>
