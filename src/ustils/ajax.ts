@@ -3,8 +3,8 @@ export const ajaxJson = (url:string, method: string = 'get', params: object) => 
         .then(response => response.json());
 };
 
-export const getJson = (url: string, params: Object): object => {
-    return ajaxJson(url, 'get', params);
+export const getJson = (url: string, params: Object) => {
+    return ajaxJson(url, 'POST', params);
 
 };
 

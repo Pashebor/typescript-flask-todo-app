@@ -18,11 +18,9 @@ class RegForm extends React.Component<any>{
     private imagePreview(e: any) {
         if (e.target.files && e.target.files[0]) {
             let reader = new FileReader();
-
             reader.onload = (e: any) => {
                 this.refs['image'].setAttribute('src', e.target.result);
             };
-
             reader.readAsDataURL(e.target.files[0]);
         }
     }
@@ -52,10 +50,19 @@ class RegForm extends React.Component<any>{
 
     }
 
+    openPopup(): any {
+        let {popupIsOpen} = this.props;
+        if (popupIsOpen) {
+            return (<Popup/>);
+        } else {
+            return false;
+        }
+    }
+
     render() {
         return(
             <form className="form" encType="multipart/form-data" ref="regForm" onSubmit={this.onSumitHandler.bind(this)}>
-                <Popup/>
+                {this.openPopup()}
                 <div className="form__item">
                     <img src="static/images/question.png" ref="image" className="form__image" alt="Фото" title="Фото" onClick={this.uploadImageHandler.bind(this)}/>
                     <input className="form__file" ref="fileInput" id="photo" type="file" name="photo" onChange={this.imagePreview.bind(this)} />
@@ -82,7 +89,8 @@ class RegForm extends React.Component<any>{
 
 export function mapStateToProps(store:any) {
     return {
-        regData: store.regFormStore.regData
+        regData: store.regFormStore.regData,
+        popupIsOpen: store.popupReducer.isOpen
     }
 }
 

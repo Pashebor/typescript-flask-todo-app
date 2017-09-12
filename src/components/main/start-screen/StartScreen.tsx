@@ -6,22 +6,11 @@ import { bindActionCreators } from 'redux';
 
 class DefaultScreen extends React.Component<any>{
 
-    isEmpty(obj): boolean {
-        if (obj == null) return true;
-
-    if (obj.length > 0)    return false;
-    if (obj.length === 0)  return true;
-
-    if (typeof obj !== "object") return true;
-
-    return true;
-    }
-
     isAuth(): any {
         const {loginData} = this.props;
         const {registerData} = this.props;
-
-        if (!this.isEmpty(loginData) || !this.isEmpty(registerData)) {
+        console.log(this);
+        if (loginData.name || registerData.name) {
             return (<div className="container"><UserTodoList/></div>);
         } else {
             return ( <div className="container"><h2 className="start-screen__title">Добро пожаловать в заметки онлайн!</h2>

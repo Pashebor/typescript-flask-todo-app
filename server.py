@@ -40,6 +40,20 @@ class Users(db.Model):
         self.img = image
 
 
+class UserNotes(db.Model):
+    __tablename__ = 'user_notes'
+
+    id = db.Column('id', db.Integer, primary_key=True)
+    user_name = db.Column('user_name', db.VARCHAR(100))
+    title = db.Column('title', db.VARCHAR(120))
+    note = db.Column('note', db.TEXT)
+
+    def __init__(self, user_name, title, note):
+        self.user_name = user_name
+        self.title = title
+        self.note = note
+
+
 def addUser(user):
     db.session.add(user)
     db.session.commit()
@@ -76,15 +90,33 @@ def register_user():
 
 
 @app.route('/login-user', methods=['POST'])
-def login_user():
+def login_user(user_data=None):
+    user_data
     users = Users.query.all()
     name = request.form.get('name')
     password = request.form.get('password')
     for user in users:
         if user.name == name and user.password == password:
-            return json.dumps({'name': name, 'password': password, 'image': user.img})
+            user_data = {'name': name, 'password': password, 'image': user.img}
+
+    if user_data is None:
+        return json.dumps({'response': 'Такого пользователя не существует'})
+    else:
+        return json.dumps(user_data)
+
+
+@app.route('/user-notes', methods=['POST'])
+def get_user_notes():
+    user_notes = UserNotes.query.all()
+    name = request.form.get('name')
+    notes_array = []
+    for note in user_notes:
+        if note.user_name == name:
+            notes_array.append({'id': note.id, 'title': note.title, 'note': note.note})
         else:
-            return json.dumps({'response': 'Такого пользователя не существует'})
+            return json.dumps({'response': 'nothing'})
+
+    return json.dumps({'response': notes_array})
 
 
 if __name__ == '__main__':
