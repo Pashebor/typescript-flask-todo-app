@@ -163,3 +163,20 @@ body{
   padding: 50px 0 160px 0;
 }
 
+.user-name{
+  font-family: $primary-font;
+  font-size: 17px;
+  color: black;
+  line-height: 8px;
+}
+
+.user-pic{
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  top: -3px;
+  right: 10px;
+  @include default-shadow-bottom;
+}
+

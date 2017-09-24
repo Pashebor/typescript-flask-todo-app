@@ -1,7 +1,14 @@
 import {getJson, requestCallback} from '../ustils/ajax';
 
-import {LOGIN_USER, REGISTER_USER, POPUP_STATE, GET_USER_NOTES_SUCCESS} from "./constants";
+import {LOGIN_USER, REGISTER_USER, POPUP_STATE, GET_USER_NOTES_SUCCESS, CREATE_TODO} from "./constants";
 import {error} from "util";
+
+export const addTodo = (todo: object) => {
+    return {
+        type: CREATE_TODO,
+        payload: todo
+    }
+}
 
 export const regUser = (formData: object) => {
     return {

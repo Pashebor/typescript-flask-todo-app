@@ -9,7 +9,7 @@ from classes.serializer import AlchemyEncoder
 UPLOAD_FOLDER = 'static/uploads/'
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd90@localhost/db_todo'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd@localhost/test'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg', 'gif'])
 db = SQLAlchemy(app)
@@ -85,7 +85,7 @@ def register_user():
         user = Users(name, password, filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         addUser(user)
-        return json.dumps({'name': name, 'password': password, 'image': 'static/uploads/' + filename})
+        return json.dumps({'name': name, 'password': password, 'image': filename})
     return False
 
 

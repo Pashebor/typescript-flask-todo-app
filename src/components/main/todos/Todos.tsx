@@ -9,13 +9,14 @@ class Todos extends React.Component<any> {
     constructor(props){
         super(props);
         const {loginData} = this.props;
-
+        const {todoData} = this.props;
         if (loginData.name) {
             const userName = new FormData();
             const {getUserNotes} = this.props;
             userName.append('name', loginData.name);
-            getUserNotes(userName);
+            !todoData[0].id ? getUserNotes(userName) : null;
         }
+        console.log(todoData);
     }
     
     showNotes() {

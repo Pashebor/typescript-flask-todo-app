@@ -41,6 +41,19 @@
       top: 1px;
       transition: color 0.2s ease-in;
     }
+    &--user{
+      display: flex;
+      flex-flow: row;
+      justify-content: center;
+      position: relative;
+      top: -10px;
+      &::before{
+        content: "";
+        top: 1px;
+        transition: color 0.2s ease-in;
+      }
+
+    }
     &:hover{
       color: $red-color;
     }
