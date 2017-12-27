@@ -3,8 +3,10 @@ import {sendRegisteredUser} from  '../../../actions/actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Popup from '../popup/Popup';
+import {RegisterProps} from '../Main';
 
-class RegForm extends React.Component<any>{
+class RegForm extends React.Component<any, RegisterProps>{
+    props: any;
     public refs: {
         regForm: any;
         fileInput: HTMLInputElement;

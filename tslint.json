@@ -4,7 +4,7 @@
   "rules": {
     "object-literal-sort-keys": false,
     "no-unused-variable": [true, "react"],
-    "new-parens": true,
+    "new-parents": true,
     "no-arg": true,
     "no-bitwise": true,
     "no-conditional-assignment": true,

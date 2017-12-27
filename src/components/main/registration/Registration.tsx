@@ -3,10 +3,11 @@ import {Link} from 'react-router-dom';
 import  AuthorizationForms from '../authorization-form/AuthorizationForms';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {RegisterProps} from '../Main';
 
 
-
-class Registration extends React.Component<any> {
+class Registration extends React.Component<any, RegisterProps> {
+    props: any;
     componentDidMount() {
         if (this.props.regData.name) {
             const {history} = this.props;

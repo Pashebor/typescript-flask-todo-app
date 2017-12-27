@@ -9,7 +9,7 @@ from classes.serializer import AlchemyEncoder
 UPLOAD_FOLDER = 'static/uploads/'
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd@localhost/test'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd90@localhost/db_todo'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg', 'gif'])
 db = SQLAlchemy(app)
@@ -57,6 +57,12 @@ class UserNotes(db.Model):
 def addUser(user):
     db.session.add(user)
     db.session.commit()
+
+
+def add_note(note):
+    db.session.add(note)
+    db.session.commit()
+    return True
 
 
 @app.route('/', defaults={'uri': ''})
@@ -117,6 +123,22 @@ def get_user_notes():
             return json.dumps({'response': 'nothing'})
 
     return json.dumps({'response': notes_array})
+
+
+@app.route('/create-note', methods=['POST'])
+def add_user_note():
+    name = request.form.get('name')
+    title = request.form.get('title')
+    note = request.form.get('note')
+    notes_array = []
+    if add_note(UserNotes(name, title, note)) is True:
+        notes = UserNotes.query.all()
+        for note in notes:
+            notes_array.append({'id': note.id, 'title': note.title, 'note': note.note})
+
+        return json.dumps({'response': notes_array})
+    else:
+        return json.dumps({'response': 'no'})
 
 
 if __name__ == '__main__':

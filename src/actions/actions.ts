@@ -3,12 +3,12 @@ import {getJson, requestCallback} from '../ustils/ajax';
 import {LOGIN_USER, REGISTER_USER, POPUP_STATE, GET_USER_NOTES_SUCCESS, CREATE_TODO} from "./constants";
 import {error} from "util";
 
-export const addTodo = (todo: object) => {
+export const addTodoSuccess = (todo: object) => {
     return {
-        type: CREATE_TODO,
+        type: GET_USER_NOTES_SUCCESS,
         payload: todo
     }
-}
+};
 
 export const regUser = (formData: object) => {
     return {
@@ -77,6 +77,15 @@ export const getUserNotes = (userName: object) => {
                 dispatch(setUserNotes(json['response']))
             })
             .catch((err: any) => console.log(error))
+    }
+};
+
+export const addTodo = (formData: object) => {
+    return (dispatch: any) => {
+        return requestCallback('/create-note', formData)
+            .then((json:object):void => {
+                dispatch(addTodoSuccess(json['response']))
+            }).catch((error:any) => console.log(error));
     }
 };
 /***************/

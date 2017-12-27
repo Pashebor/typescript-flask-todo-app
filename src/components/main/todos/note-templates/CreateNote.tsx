@@ -5,11 +5,11 @@ import { bindActionCreators } from 'redux';
 import {Link} from "react-router-dom";
 
 class CreateNote extends React.Component<any> {
+    props: any;
     refs: {
         title: HTMLInputElement,
         message: HTMLTextAreaElement
     };
-
 
     onClearFieldsHandler() {
         for (let field in this.refs) {
@@ -19,11 +19,12 @@ class CreateNote extends React.Component<any> {
 
     createTodoHandler(event) {
         event.preventDefault();
+        const {loginData} = this.props;
         const {todoData} = this.props;
         const {addTodo} = this.props;
-        const note: object = {};
+        const note = new FormData();
         let maxId: any = [];
-
+        note.append('name', loginData.name);
         todoData.map(item => {
             if (item.id) {
                 maxId.push(item.id);
@@ -31,14 +32,13 @@ class CreateNote extends React.Component<any> {
         });
 
         for (let field in this.refs) {
-            note[field] = this.refs[field].value
+            note.append(`${field}`, this.refs[field].value);
         }
-        if (maxId[0]) {
-            note['id'] = Math.max(...maxId) + 1;
+        /*if (maxId[0]) {
+            note.append('') = Math.max(...maxId) + 1;
         } else {
             note['id'] = 1;
-        }
-        console.log(note);
+        }*/
         addTodo(note);
     }
 
