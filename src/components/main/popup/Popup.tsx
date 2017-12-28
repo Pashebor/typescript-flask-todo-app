@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {switchPopup} from '../../../actions/actions';
 import { Link } from 'react-router-dom';
+import {RegisterProps} from '../Main';
 
 class Popup extends React.Component<any>{
-
+    props: any;
     closePopupHandler(): void {
         const {switchPopup} = this.props;
         switchPopup(false, '');
     }
 
     showMessage():string{
-        let {popupMessageText} = this.props;
+        const {popupMessageText} = this.props;
         return popupMessageText;
     }
 

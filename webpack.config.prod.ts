@@ -48,7 +48,7 @@ const configProd: webpack.Configuration = {
             }
         ]
     },
-    watch: false,
+    watch: true,
     plugins: [
         /*new HtmlWebpackPlugin({
             template: path.resolve(rootPath, './index.html')

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 class DefaultScreen extends React.Component<any>{
-
+    props: any;
     isAuth(): any {
         const {loginData} = this.props;
         const {registerData} = this.props;

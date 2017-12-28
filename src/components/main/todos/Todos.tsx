@@ -6,8 +6,8 @@ import {Link} from "react-router-dom";
 
 
 class Todos extends React.Component<any> {
-    constructor(props){
-        super(props);
+    props: any;
+    componentDidMount() {
         const {loginData} = this.props;
         const {todoData} = this.props;
         if (loginData.name) {
@@ -16,9 +16,8 @@ class Todos extends React.Component<any> {
             userName.append('name', loginData.name);
             !todoData[0].id ? getUserNotes(userName) : null;
         }
-        console.log(todoData);
     }
-    
+
     showNotes() {
         const {todoData} = this.props;
         if (todoData[0]) {
@@ -54,7 +53,7 @@ class Todos extends React.Component<any> {
     }
 }
 
-export function mapStateToProps(store:any) {
+export function mapStateToProps(store) {
     return {
         loginData: store.loginReducer.formData,
         registerData: store.regFormStore.regData,
@@ -62,7 +61,7 @@ export function mapStateToProps(store:any) {
     }
 }
 
-export const mapDispatchToProps = (dispatch:any) => {
+export const mapDispatchToProps = (dispatch) => {
     //noinspection TypeScriptValidateTypes
     return bindActionCreators({getUserNotes, switchPopup}, dispatch)
 };

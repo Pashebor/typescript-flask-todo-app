@@ -2,7 +2,6 @@ import * as React from 'react';
 
 class EditNote extends React.Component<any> {
     id: string;
-
     refs: {
         title: HTMLInputElement,
         message: HTMLTextAreaElement

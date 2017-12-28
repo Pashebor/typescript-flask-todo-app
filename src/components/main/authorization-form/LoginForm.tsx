@@ -5,7 +5,7 @@ import {sendLoginedUserCallback, switchPopup} from '../../../actions/actions';
 import Popup from '../popup/Popup';
 
 class LoginForm extends React.Component<any>{
-
+    props: any;
     refs: any = {
         login: HTMLInputElement,
         password: HTMLInputElement
