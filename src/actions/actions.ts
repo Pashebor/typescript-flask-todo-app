@@ -62,7 +62,7 @@ export const sendLoginedUserCallback = (formData: object) => {
 export const sendRegisteredUser = (formData: object) => {
     return (dispatch: any) => {
         return requestCallback('/register-user', formData)
-            .then((json: object): void => {
+            .then((json) => {
                 dispatch(switchPopup(true, 'Вы успешно зарегистрировались!'));
                 dispatch(registerUser(json))
             })

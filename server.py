@@ -2,15 +2,15 @@
 import os
 from flask import Flask, render_template, jsonify, json, request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import updade
+from sqlalchemy import update
 from werkzeug.utils import secure_filename
 
 from classes.serializer import AlchemyEncoder
 
-UPLOAD_FOLDER = 'static/uploads/'
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd@localhost/db_todo'
+UPLOAD_FOLDER = app.root_path + '/static/uploads/'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ltvmzyjd90@localhost/db_todo'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg', 'gif'])
 db = SQLAlchemy(app)
@@ -75,7 +75,6 @@ def update_notes(note):
 def catch_all_uri(uri):
     if uri == 'register':
         users = Users.query.all()
-        print (json.dumps({'users': users}, cls=AlchemyEncoder))
         return render_template('todo.html')
     elif uri == 'login':
         return render_template('todo.html')
@@ -88,15 +87,15 @@ def start():
 
 @app.route('/register-user', methods=['POST'])
 def register_user():
-    file = request.files['image']
+    image = request.files['image']
     name = request.form.get('name')
     password = request.form.get('pass')
-    filename = secure_filename(file.filename)
-    if file and allowed_file(filename):
-        user = Users(name, password, filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    image_name = secure_filename(image.filename)
+    if image and allowed_file(image_name):
+        user = Users(name, password, image_name)
+        image.save(os.path.join(app.config['UPLOAD_FOLDER'], image_name))
         addUser(user)
-        return json.dumps({'name': name, 'password': password, 'image': filename})
+        return json.dumps({'name': name, 'password': password, 'image': image_name})
     return False
 
 

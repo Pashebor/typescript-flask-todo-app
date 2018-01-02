@@ -7,7 +7,7 @@
     "noImplicitAny": false,
     "jsx": "react",
     "strictNullChecks": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "types": [
       "node"
     ]

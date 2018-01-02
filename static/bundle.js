@@ -29961,8 +29961,10 @@ var todoReducer = function (state, action) {
 /* unused harmony export putJson */
 /* unused harmony export deleteJson */
 var ajaxJson = function (url, method, params) {
-    if (method === void 0) { method = 'get'; }
-    return fetch(url, { method: method, body: params })
+    return fetch(url, {
+        method: method,
+        body: params
+    })
         .then(function (response) { return response.json(); });
 };
 var getJson = function (url, params) {
@@ -30642,4 +30644,3 @@ module.exports = function(module) {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=bundle.js.map

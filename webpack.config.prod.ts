@@ -19,7 +19,7 @@ const configProd: webpack.Configuration = {
         path: outputPath,
         filename: "[name].js",
     },
-    devtool: "#source-map",
+    /*devtool: "#source-map",*/
 
     resolve:{
         extensions: ["*", ".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".jsx"],

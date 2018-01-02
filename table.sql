@@ -1,5 +1,5 @@
 use todoapp;
-INSERT INTO users(first_name, last_name) VALUES ('Andew', 'Romanov');
+INSERT INTO users(name, password) VALUES ('pashebor', '123456');
 SELECT * from users;
 DROP TABLE users;
 
@@ -9,7 +9,7 @@ CREATE table users(
   password VARCHAR(120),
   img VARCHAR(120),
   PRIMARY KEY (id)
-)ENGINE = InnDB;
+)ENGINE = InnoDB;
 
 CREATE table user_notes(
   id INT(11) NOT NULL AUTO_INCREMENT,
@@ -17,4 +17,4 @@ CREATE table user_notes(
   title VARCHAR(120),
   note TEXT,
   PRIMARY KEY (id)
-)ENGINE = InnDB;
+)ENGINE = InnoDB;
